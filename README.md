@@ -41,7 +41,7 @@
 <br/>
 
 ### 2. 영상 모델을 활용한 손동작 인식
-<img src="./readme-assets/function2-hand-pose.햘" width="600" height="360">
+<img src="./readme-assets/function2-hand-pose.gif" width="600" height="360">
 <br/>
 
 ### 3. 이미지 모델을 활용한 사용자 그림 식별
