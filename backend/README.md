@@ -1,34 +1,76 @@
 # Backend
 
-## 디렉토리 구조
+## 아키텍처 패턴
+
+내가 기린 그림의 백엔드는 MSA 아키텍처 패턴을 일부 적용하고 있고 서비스 단위로 나뉘어진 작은 프로젝트 여러 개로 이루어져 있습니다.
+
+서비스 구성은 다음과 같습니다.
+``` text
+├─ auth  : 소셜 로그인 인증을 담당하는 서버입니다. Spring Security와 JWT를 사용해 Access-Token을 클라이언트에 제공합니다. 
+│          Openfeign Client를 사용하여 user 서버와 통신합니다.
+│          MariaDB와 연동하여 서비스됩니다.
+│
+├─ user  : 회원 계정과 관리와 회원이 가진 컨텐츠, 결제 코인(열쇠) 관리를 담당하는 서버입니다. 
+│          Okhttp3 Client를 사용하여 store 서버와 통신합니다.
+│          MariaDB와 연동하여 서비스됩니다.     
+│
+├─ books : 메인 서비스 컨텐츠 관리를 담당하는 서버입니다.
+│          Okhttp3 Client를 사용하여 store 서버와 통신합니다.
+│          MariaDB와 연동하여 서비스됩니다.    
+│
+└─ store : 이미지 파일을 관리하는 스토리지 서버입니다.
+           MongoDB와 연동하여 서비스됩니다. 
+```
+<br/>
+
+## 프로젝트 디렉토리 컨벤션
+
+협업 시 편의성과 유지보수성을 높이기 위해 각 서비스의 디렉토리 컨벤션을 정하였습니다.
+
+각 서비스의 디렉토리 구조는 다음과 같습니다.
 
 ``` text
-backend
-├─ auth 
-├─ user
-├─ book
+├─ api
+│   ├── controller
+│   ├── dto                 
+│   │   ├── request
+│   │   └── response
+│   ├── service
+│   │   └── impl
+│   └── util
+│
+├─ db
+│   ├── entity
+│   └── repository
+│
+├─ exception 
+│   └── handler
+│
+├─ logger
+│
 ...
 
 ```
+ 
 
-# 스택 및 버전 조사 문서 작성
+
+# 기술 스택 및 버전 선정 근거
 
 날짜: 2023년 3월 9일
 참여자: 윤태준, 이방환
 
-# JDK version - 8 vs 17
+<details open>
+  <summary> <b style="font-size:18px;"> JDK version - 8 vs 17 </b></summary>
 
-<aside>
-💡 현재 공식적인 자바의 최신 버전은 Java 19입니다. 하지만 현업에서는 아직 Java 8이나 11을 쓰는 케이스가 많습니다. 최근 여러 검색 자료에서 Java 8/11의 지원이 끝난 이후에 발생하는 마이그레이션 비용을 줄이기 위해 소수지만 Java 17을 도입한다는 내용을 볼 수 있는데, 우리 프로젝트에선 어떤 버전을 사용하는 것이 좋을까요?
-
-</aside>
+> 💡 현재 공식적인 자바의 최신 버전은 Java 19입니다. 하지만 현업에서는 아직 Java 8이나 11을 쓰는 케이스가 많습니다. <br/>
+> 최근 여러 검색 자료에서 Java 8/11의 지원이 끝난 이후에 발생하는 마이그레이션 비용을 줄이기 위해 소수지만 Java 17을 도입한다는 내용을 볼 수 있는데, 우리 프로젝트에선 어떤 버전을 사용하는 것이 좋을까요?
 
 - 8 or 11
 - 17 ✅
 
 [Java version history](https://en.wikipedia.org/wiki/Java_version_history)
 
-## 결론
+### 결론
 
 프로젝트 자체로만 보면 굳이 새 프로젝트를 Java 8으로 생성할 필요는 없어 보이며, Java 17을 사용해도 무방할 것 같습니다. 그리고 SpringBoot 3부터는 Java 17 이상만 지원하지만, SpringBoot 2.x 버전에서도 Java 17 의 사용이 가능합니다.
 
@@ -36,26 +78,11 @@ backend
 
 또한, 이전버전들의 LTS 종료 이후 Future Release 제품을 사용하게 되었을 때를 대비하여 미리 경험해 보고자 합니다.
 
-# SpringBoot version - 2.x  vs  3.0.x
+</details>
+<br/>
 
-<aside>
-💡 SpringBoot 3.0.0 이후부터 Java 17 이상 JDK들만 지원한다고 합니다. SpringBoot의 각 버전은 그리 공식 지원기간이 길지 않아서 2.7.x 버전도 현재 2023년 올해 support가 끊긴다고 합니다. 
-현업에서는 아직 2.x 버전을 사용하는 사례가 많고, SpringBoot 3는 아직 실험적이라고 보는 경향이 있는데, 어떤 버전을 사용하는 것이 좋을까요?
-
-</aside>
-
-- SpringBoot 2.x
-- SpringBoot 3.0.x ✅
-
-## 결론
-
-SpringBoot 3에서는 REST API의 표준화 운동이라고 볼 수 있는 `RFC 7807 - Problem Detail의 적용`을 지원하고 있어 좀더 엄격한 REST API의 설계가 가능합니다. 또한 [경로 조작](https://2-juhyun-2.tistory.com/496)에 대한 보안 이슈가 강화되기도 했습니다. (`api/` 와 `api` 가 더이상 같지 않습니다)
-
-프레임워크의 버전을 바꾸는 것은 많은 차이점들과 호환성 문제들에 대한 우려가 있습니다. 하지만 최근에는 third party 애플리케이션이나 의존성 패키지들의 업데이트 주기가 상당히 빠른 편이기 때문에 critical한 문제는 되지 않으며, gradle을 통한 호환성 문제 해결도 어느정도 기대할 수 있다고 합니다.
-
-때문에 JDK 버전 선택과 마찬가지로 지속적으로 변화하는 환경에 유연하게 대처하는 자세를 길러보고자 SpringBoot 3 을 사용해 보고자 합니다.
-
-# JDK vendor ?
+<details open>
+  <summary> <b style="font-size:18px;"> JDK vendor ? </b></summary>
 
 <aside>
 💡 openJDK Vendor들이 굉장히 많은데, 종류별로 차이는 없는지, 어떤 것을 쓰는 것이 좋을까?
@@ -67,16 +94,39 @@ SpringBoot 3에서는 REST API의 표준화 운동이라고 볼 수 있는 `RFC 
 - Azul
 - etc..
 
-## 결론
+### 결론
 
  어느걸 써도 무방! 큰 차이가 없음.
 
-# API Docs
+</details>
+<br/>
 
-<aside>
-💡 SpringBoot version 에 따른 이슈
+<details open>
+  <summary> <b style="font-size:18px;"> SpringBoot version - 2.x  vs  3.0.x </b></summary>
 
-</aside>
+> 💡 SpringBoot 3.0.0 이후부터 Java 17 이상 JDK들만 지원한다고 합니다. SpringBoot의 각 버전은 그리 공식 지원기간이 길지 않아서 2.7.x 버전도 현재 2023년 올해 support가 끊긴다고 합니다. <br/>
+> 현업에서는 아직 2.x 버전을 사용하는 사례가 많고, SpringBoot 3는 아직 실험적이라고 보는 경향이 있는데, 어떤 버전을 사용하는 것이 좋을까요?
+
+
+
+- SpringBoot 2.x
+- SpringBoot 3.0.x ✅
+
+### 결론
+
+SpringBoot 3에서는 REST API의 표준화 운동이라고 볼 수 있는 `RFC 7807 - Problem Detail의 적용`을 지원하고 있어 좀더 엄격한 REST API의 설계가 가능합니다. 또한 [경로 조작](https://2-juhyun-2.tistory.com/496)에 대한 보안 이슈가 강화되기도 했습니다. (`api/` 와 `api` 가 더이상 같지 않습니다)
+
+프레임워크의 버전을 바꾸는 것은 많은 차이점들과 호환성 문제들에 대한 우려가 있습니다. 하지만 최근에는 third party 애플리케이션이나 의존성 패키지들의 업데이트 주기가 상당히 빠른 편이기 때문에 critical한 문제는 되지 않으며, gradle을 통한 호환성 문제 해결도 어느정도 기대할 수 있다고 합니다.
+
+때문에 JDK 버전 선택과 마찬가지로 지속적으로 변화하는 환경에 유연하게 대처하는 자세를 길러보고자 SpringBoot 3 을 사용해 보고자 합니다.
+
+</details>
+<br/>
+
+<details open>
+  <summary> <b style="font-size:18px;"> API Docs </b></summary>
+
+> 💡 SpringBoot version 에 따른 이슈
 
 - Swagger 3 ✅
     - SpringBoot 3 환경에서 실패 사례가 많다.
@@ -84,16 +134,18 @@ SpringBoot 3에서는 REST API의 표준화 운동이라고 볼 수 있는 `RFC 
 - Spring Rest Docs
     - ui가 구리며, 실제 요청을 보낼때는 postman 등의 외부 프로그램을 사용해야 한다는 단점이 있다.
 
-## 결론
+### 결론
 
 한 페이지에서 요청도 보낼 수 있는 Spring Docs + Swagger 3 을 쓰려고 합니다.
 
-# Build tool
+</details>
+<br/>
 
-<aside>
-💡 유연성, 성능차이, 사용자 경험을 토대로 선정
 
-</aside>
+<details open>
+  <summary> <b style="font-size:18px;"> Build tool </b></summary>
+
+> 💡 유연성, 성능차이, 사용자 경험을 토대로 선정
 
 - Maven
     - Maven은 사용자 지정을 때로는 불가능하게 하는 염격한 모델
@@ -107,29 +159,32 @@ SpringBoot 3에서는 REST API의 표준화 운동이라고 볼 수 있는 `RFC 
 
 [Gradle | Gradle vs Maven Comparison](https://gradle.org/maven-vs-gradle/)
 
-## 결론
+### 결론
 
 gradle을 쓰려고 합니다. 현재 모든 프로그래밍 진영에서 XML을 없애려는 움직임이 일어나고 있습니다.
 
-배포 시에 도커에서 빌드하지 않도록 주의하면 빠른 지속 배포가 가능할 것으로 기대된다.
+배포 시에 도커에서 빌드하지 않도록 주의하면 빠른 지속 배포가 가능할 것으로 기대됩니다.
 
-# Coding Convenstion
+</details>
+<br/>
 
-<aside>
-💡 큰 차이가 없음! 어느걸 써도 무방
 
-</aside>
+<details open>
+  <summary> <b style="font-size:18px;"> Coding Convention </b></summary>
+
+> 💡 큰 차이가 없음! 어느걸 써도 무방
 
 1. Google ✅
 2. Naver
 3. Oracle
 
-# DB
+</details>
+<br/>
 
-<aside>
-💡 RDBMS
+<details open>
+  <summary> <b style="font-size:18px;"> RDB - Maria? MySQL </b></summary>
 
-</aside>
+💡 MariaDB와 MySQL은 문법도 동일하고 모두 InnoDB를 사용할 수 있는데, 둘 간의 차이점은 무엇이고 저희 서비스에는 어떤 제품이 적합할까요?
 
 1. MySQL
 2. MariaDB ✅
@@ -155,3 +210,9 @@ gradle을 쓰려고 합니다. 현재 모든 프로그래밍 진영에서 XML을
 | 힘내 허브 별 | 2.8k | 4k |
 | 포크 | 868 | 1.6K |
 | 사용하는 유명 기업 | Nrise, Accenture, Docplanner, Grooveshark. | 에어비앤비, 우버 테크노글로이스, 넷플릭스, 드롭박스. |
+
+### 결론
+
+기업용 제품이 아닌 이상 어떤 DB를 쓰든 성능 차이를 느끼기 힘들기 때문에 아직 써보지 못한 MariaDB를 써보려 합니다.
+
+</details>
