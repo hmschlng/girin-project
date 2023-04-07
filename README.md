@@ -4,44 +4,52 @@
 
 # 🦒 내가 기린 그림 - AI 기반 인터랙티브 동화책
 
-[UCC 보기 링크](https://www.youtube.com/watch?v=tk8EtC_RIMY)
+<video controls width="600">
+  <source src="exec/[B201]-UCC.mp4" type="video/mp4">
+</video>
 
 > <br/>
 >
 > ***"내가 함께 만들어가는 추억과 이야기. 내가 바로 동화이자, 기린 그림이다!"*** <br/>
 > 
-> **내가 기린 그림**은 다양한 **영상 AI 기술**과 **게이미피케이션**을 적용해, 아이들이 인터랙티브 활동 요소가 가미된 동화책도 읽고, 그림 그리기 활동도 할 수 있는 온라인 놀이터 입니다. <br/>
+> **내가 기린 그림**은 다양한 **영상 AI 기술**과 **게이미피케이션**을 적용해, 아이들이 인터랙티브 활동 요소가 가미된 동화책도 읽고, 그림 그리기 활동도 할 수 있는 웹 서비스 입니다. <br/>
 > 
+> <br/>
+
+## 💡 기획 의도
+> <br/>
 > 
-> 
+> **알파 세대의 정보 습득**
 >
+> MZ 세대의 다음 세대인 2010 년 이후 출생한 이들을 일컬어 알파세대라고 합니다.<br/>
+> 이 알파세대의 특징은 태어날 때부터 스마트 기기와 함께 생활했고, 고도화된 기술 환경의 영향으로 네트워크 상에서의 커뮤니케이션이 익숙한 세대입니다.
+> 이러한 알파세대들은 더 이상 텍스트가 아닌 영상 혹은 시각화된 자료를 통해 정보를 습득합니다.
+>
+> 저희는 이러한 흐름을 생각하며 기존의 EBOOK 형태의 동화에 게이미피케이션을 적용한 인터렉티브 웹 동화를 기획했습니다.
+> 
+> **우리의 목표**
+> 동화책을 읽으면서 시각, 촉각적인 상호작용도 함으로써 아이들의 몰입감을 형성하고 더 나아가 학습의 효과도 기대할 수 있는 서비스가 저희의 지향점입니다.
+> 
 > <br/>
 <br/> 
 
 # ✨ 내가 기린 그림의 기능들
 
 ### 1. 나만의 동화책 만들기
-(시나리오 선택하는 짤)
 
 <img src="./readme-assets/function1-fairytale.gif" width="600" height="360">
 <br/>
 
 ### 2. 영상 모델을 활용한 손동작 인식
-(가위바위보 게임 진행 짤)
-
-<img src="./readme-assets/function2.png" width="600" height="360">
+<img src="./readme-assets/function2-hand-pose.햘" width="600" height="360">
 <br/>
 
 ### 3. 이미지 모델을 활용한 사용자 그림 식별
-(소중한 물건 그리기와 텍스트로 변환되는 모습 짤)
-
-<img src="./readme-assets/function3.png" width="600" height="360">
+<img src="./readme-assets/function3-image-classify.gif" width="600" height="360">
 <br/>
 
 ### 4. 이미지 모델을 활용한 사용자 숫자 그림 식별
-(비밀번호 그리기와 맞은 결과 / 틀린 결과 모습 짤)
-
-<img src="./readme-assets/function4.png" width="600" height="360">
+<img src="./readme-assets/function4-number-recognition.gif" width="600" height="360">
 <br/>
 
 ### 5. 내가 만든 작품들 모아보기
@@ -49,8 +57,7 @@
 <img src="./readme-assets/function5-my-drawer.gif" width="600" height="360">
 <br/>
 
-### 6. ~~~를 활용한 그림 트래킹?
-
+### 6. Canvas를 활용한 손그림 트래킹?
 <img src="./readme-assets/function6-diary.gif" width="600" height="360">
 <img src="./readme-assets/function6-sketch.gif" width="600" height="360">
 <br/>
@@ -333,19 +340,24 @@
   <summary> <b style="font-size:24px;"> <a href="https://www.notion.so/Git-Convention-9a5988f2f73e4032ac787ade0fa03fc1">Git Convention</a> </b></summary>
 
 ### 1.  Branch
-
+> <br/>
+> 
 > 브랜치 전략은 Git flow 전략을 사용합니다.
 master → develop → feature → release → master의 순서로 브랜치 분할 & 병합이 발생하며 `절대로 혼자서 master 브랜치에 병합하는 일이 없도록` 합니다.
 > 
+> <br/>
+
 - **Git flow 참고**
     
     [Git Flow 전략에 대해...](https://velog.io/@ljdongz/Git-Flow-%EC%A0%84%EB%9E%B5%EC%97%90-%EB%8C%80%ED%95%B4)
     
     [(알아두면 개발팀장가능) GitFlow vs Trunk-based 협업방식](https://www.youtube.com/watch?v=EV3FZ3cWBp8)
+<br/>
     
 
 ### 2. Commit Message
-
+> <br/>
+> 
 > 커밋 메시지는 함수 별, 단위 작업 별로 추가합니다. `(한꺼번에 staging 금지)`
 커밋 메시지는 [Udacity Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/) 에 따라 작성하되, 한글로 작성합니다.
 > 
@@ -354,6 +366,7 @@ master → develop → feature → release → master의 순서로 브랜치 분
 > 
 > ~~커밋 메시지 Body 앞에는 Gitmoji를 붙입니다.~~
 > 
+> <br/>
 
 ```bash
 feat: 로그인 버튼 제작
@@ -413,13 +426,16 @@ hotfix: hotfix 브랜치에서 작업하는 모든 커밋 내용들
     VSCode Gitmoji Plugin
     
     [[GIT] ⚡️ Gitmoji 사용법 정리 (+ 깃모지 툴 소개)](https://inpa.tistory.com/entry/GIT-%E2%9A%A1%EF%B8%8F-Gitmoji-%EC%82%AC%EC%9A%A9%EB%B2%95-Gitmoji-cli)
-    
+<br/>
 
 ### 3. Pull Request
-
+> <br/>
+> 
 > 기능을 합칠 때는 반드시 merge request를 게시해 리뷰를 기다립니다.
 각 파트 lead들은 완료된 PR에 한해 리뷰를 달고 머지할 지 말지를 결정하며, `MR을 작성하고 병합할 때 무조건 변경사항을 확인`합니다.
 > 
+> <br/>
+
 - **PR 컨벤션 참고**
     
     [Git Pull Request 컨벤션](https://beststar-1.tistory.com/12)
@@ -427,13 +443,16 @@ hotfix: hotfix 브랜치에서 작업하는 모든 커밋 내용들
     컨벤션 예시
     
     [https://github.com/HwangWonGyu/news/issues](https://github.com/HwangWonGyu/news/issues)
-    
+<br/>
 
 ### 4. User and Access Level
-
+> <br/>
+> 
 > 유저 이름은 **한글 실명**으로 하고, 팀 구성원 모두 maintainer 권한을 가집니다.
 각자의 MR은 전부 자신이 처리합니다.
 > 
+> <br/>
+
 - 유저 설정
 
 ```bash
@@ -450,9 +469,11 @@ git config --global user.name "홍길동"
   <summary> <b style="font-size:24px;"> <a href="https://www.notion.so/Jira-Convention-2778babae91143bfb33626453ec15270">JIRA Convention</a> </b></summary>
 
 ## 1. Epic
-
+> <br/>
+> 
 > 기능 **대분류** 단위로 에픽을 나눕니다.
 > 
+> <br/>
 
 ```markdown
 # 예시
@@ -468,9 +489,11 @@ git config --global user.name "홍길동"
     - 프론트와 백엔드 같이 진행
 
 ## 2. Story
-
+> <br/>
+> 
 > 회의나 공부와 같이 **개발 외**의 작업에 대해 작성합니다.
 > 
+> <br/>
 
 ```markdown
 # 예시
@@ -487,9 +510,12 @@ git config --global user.name "홍길동"
     - 프론트와 백엔드 같이 진행
 
 ## 3. Task
-
+> <br/>
+> 
 > 포지션 별 **개발** 작업에 대해 작성합니다.
 > 
+> <br/>
+
 
 ```markdown
 # 예시
@@ -500,18 +526,20 @@ git config --global user.name "홍길동"
 ```
 
 - Task란
-    - Epic를 완료하기 위해 개발자가 작업해야 하는 단위 작업
+  - Epic를 완료하기 위해 개발자가 작업해야 하는 단위 작업
 
 ## 4. Scrum
-
-> 스크럼 시작 전 자신의 `To-do` 이슈들을 추가합니다.
-
-[개인 공부] 이슈는 오늘 공부할 토픽으로 이름을 바꿉니다.
-
-`Work In Process` 이슈들 중 오늘 완료하지 못한 이슈들은 완료될 때 `Done`으로 넘깁니다.
-
-만약 스프린트가 끝날 때 까지 완료하지 못한 Issue들은 `Done`으로 넘기지 않은 채로 스프린트를 종료하여 Backlog로 다시 보냅니다.
->
+> <br/>
+> 
+> 스크럼 시작 전 자신의 `To-do` 이슈들을 추가합니다.<br/>
+> 
+> [개인 공부] 이슈는 오늘 공부할 토픽으로 이름을 바꿉니다.<br/>
+> 
+> `Work In Process` 이슈들 중 오늘 완료하지 못한 이슈들은 완료될 때 <br/>`Done`으로 넘깁니다.
+> 
+> 만약 스프린트가 끝날 때 까지 완료하지 못한 Issue들은 `Done`으로 넘기지 않은 채로 스프린트를 종료하여 Backlog로 다시 보냅니다.
+> 
+> <br/>
 
 </details>
 
@@ -535,7 +563,11 @@ git config --global user.name "홍길동"
 
 ## 1. common
 
-- 기본
+> <br/>
+>
+> 기본적으로 Google Java Convention을 따릅니다.
+>
+> <br/>
 
 ```java
 public class Main {
