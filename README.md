@@ -1,4 +1,4 @@
-![logo](https://i.imgur.com/WIX8JCD.png)
+<img src="https://i.imgur.com/WIX8JCD.png" width="700" center>
 
 <br/>
 
