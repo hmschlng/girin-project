@@ -35,33 +35,33 @@
 
 ### 1. 나만의 동화책 만들기
 
-<img src="./readme-assets/function1-fairytale.gif" width="600" height="360">
+<img src="/readme-assets/function1-fairytale.gif" width="600" height="360">
 
 > 메인 화면에서 동화책을 구매하여 읽을 수 있습니다. <br/>
 > 저희 개발진들이 직접 준비한 동화책과 가위바위보 게임 등 다양한 상호작용 컨텐츠가 준비되어 있으니 재미있게 즐겨주세요~!
 <br/>
 
 ### 2. 영상 모델을 활용한 손동작 인식
-<img src="./readme-assets/function2-hand-pose.gif" width="600" height="360">
+<img src="/readme-assets/function2-hand-pose.gif" width="600" height="360">
 
 > **Google MediaPipe Hand**를 사용한 손동작 인식 모델을 활용하여 가위바위보 게임을 할 수 있습니다.
 <br/>
 
 ### 3. 이미지 모델을 활용한 사용자 그림 식별
-<img src="./readme-assets/function3-image-classify.gif" width="600" height="360">
+<img src="/readme-assets/function3-image-classify.gif" width="600" height="360">
 
 > **Doodle Classifier Model**을 학습하여 손그림에 대해 텍스트로 인식할 수 있습니다.
 <br/>
 
 ### 4. 이미지 모델을 활용한 사용자 숫자 그림 식별
-<img src="./readme-assets/function4-number-recognition.gif" width="600" height="360">
+<img src="/readme-assets/function4-number-recognition.gif" width="600" height="360">
 
 > **Number Recognition Model**을 학습하여 손으로 그린 숫자들을 텍스트로 인식할 수 있습니다.
 <br/>
 
 ### 5. 내가 만든 작품들 모아보기
 
-<img src="./readme-assets/function5-my-drawer.gif" width="600" height="360">
+<img src="/readme-assets/function5-my-drawer.gif" width="600" height="360">
 
 > 동화책은 선택지마다 다양한 엔딩과 줄거리로 나뉘어집니다. <br/>
 > 
@@ -69,23 +69,23 @@
 <br/>
 
 ### 6. Canvas를 활용한 손그림 트래킹?
-<img src="./readme-assets/function6-diary.gif" width="600" height="360">
+<img src="/readme-assets/function6-diary.gif" width="600" height="360">
 
-<img src="./readme-assets/function6-sketch.gif" width="600" height="360">
+<img src="/readme-assets/function6-sketch.gif" width="600" height="360">
 
 > React Canvas를 활용해, 그림일기와 스케치북에 그림을 그린 기록을 내 책장에서 구경하실 수 있습니다.
 <br/>
 
 ### 7. 카카오 소셜 로그인
 
-<img src="./readme-assets/function7-kakao-login.gif" width="600" height="360">
+<img src="/readme-assets/function7-kakao-login.gif" width="600" height="360">
 
 > 카카오톡 계정을 사용해 로그인 하실 수 있습니다.
 <br/>
 
 ### 8. 카카오 페이 결제
 
-<img src="./readme-assets/function8-kakao-pay.gif" width="600" height="360">
+<img src="/readme-assets/function8-kakao-pay.gif" width="600" height="360">
 
 > 카카오 페이를 이용해 결제하실 수 있습니다.
 <br/>
